@@ -6,7 +6,7 @@ import { deliveryAddresses } from "./fixtures";
 
 const user = userEvent.setup();
 
-const inputContactNumber = async (inputValues = { name: "田中太郎", phoneNumber: "000-0000-0000" }) => {
+export const inputContactNumber = async (inputValues = { name: "田中太郎", phoneNumber: "000-0000-0000" }) => {
   await user.type(
     screen.getByRole("textbox", { name: "電話番号" }),
     inputValues.phoneNumber
@@ -18,7 +18,7 @@ const inputContactNumber = async (inputValues = { name: "田中太郎", phoneNum
   return inputValues;
 };
 
-const inputDeliveryAddress = async (inputValues = {
+export const inputDeliveryAddress = async (inputValues = {
   postalCode: "167-0051",
   prefectures: "東京都",
   municipalities: "杉並区荻窪1",
@@ -57,7 +57,7 @@ const mockHandleSubmit = () => {
   return [mockFn, onSubmit] as const;
 }
 
-const clickSubmit = async () => {
+export const clickSubmit = async () => {
   await user.click(screen.getByRole("button", { name: "注文内容の確認へ進む" }));
 }
 

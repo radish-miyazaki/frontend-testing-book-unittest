@@ -1,4 +1,4 @@
-import { fireEvent, render, screen } from "@testing-library/react";
+import { fireEvent, logRoles, render, screen } from "@testing-library/react";
 import { Form } from "./Form";
 
 test('display name', () => {
@@ -21,4 +21,14 @@ test('when press button, carry out event handler', () => {
   render(<Form name="taro" onSubmit={mockFn} />);
   fireEvent.click(screen.getByRole('button'));
   expect(mockFn).toHaveBeenCalled();
+})
+
+test('Snapshot: account name "jiro" is displayed', () => {
+  const { container } = render(<Form name="jiro" />);
+  expect(container).toMatchSnapshot();
+})
+
+test('logRoles: check role and accessibility name', () => {
+  const { container } = render(<Form name="jiro" />);
+  logRoles(container);
 })
